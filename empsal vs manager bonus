@@ -1,0 +1,91 @@
+import java.util.*;
+class Employee {
+    private String name;
+    private double salary;
+    Employee(String n, double s) {///constructor
+        name = n;
+        salary = s;
+    }
+
+    public String getName() {  //getter
+        return name;
+    }
+
+    public void setName(String n) {  //setter
+        name = n;
+
+    }
+
+    public double getSalary() {//getter method for salary
+        return salary;
+    }
+
+    public void setSalary(double s) { //setter method for salary
+        salary = s;
+    }
+
+    public void raiseSalary(double percent) {
+        salary += salary * percent / 100;
+    }
+
+    public void displayInfo()
+    {
+        System.out.println("Hello display of Employee...");
+    }
+
+}
+class Manager extends Employee //Derived class
+{
+    double bonus;
+
+    Manager(String n, double s, double b) //Constructor for Derived class
+    {
+        super(n, s);
+        bonus = b;
+    }
+
+    void setBonus(double b) {
+        bonus = b;
+    }
+
+    public double getSalary()  //Overriding the base class method name
+    {
+        return super.getSalary() + bonus;
+    }
+
+    public void displayInfo() {
+        System.out.println("Hello display of Manager...");
+
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        Employee e;
+        e = new Employee("Ram", 30000);
+        e.raiseSalary(10);
+        e.getSalary();
+        System.out.println("The employee salary after appraisal is :" + e.getSalary());
+
+        Manager m;
+        m=new Manager("Ramya",80000,20000);
+        m.setSalary(90000);
+        System.out.println("After appraisal the salary of manager is:" +m.getSalary());
+        Employee e1 = new Manager("Anu", 60000, 10000);
+       System.out.println("Anu's Salary after appraisal: " +e1.getSalary());
+       int[] i=new int[4];
+       Employee[] employees= new Employee[4];  //Array objects (this contains all employees in one array object)
+       employees[0] = new Employee("Sheela",10000);
+        employees[1] = new Employee("Renuka",20000);
+        employees[2] = new Employee("gopi",5000);
+        employees[3] = new Manager("Anu", 60000, 10000);
+        Manager m2= (Manager) employees[3];  //casting
+        m2.setBonus(20000);
+        for(Employee emp:employees)
+        {
+            System.out.println(emp.getName()+ " " +emp.getSalary());
+
+e.displayInfo();
+m.displayInfo();
+        }
+           }
+}
